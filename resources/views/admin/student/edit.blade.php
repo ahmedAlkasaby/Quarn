@@ -1,6 +1,6 @@
 @extends('admin.master')
 @section('title')
-@lang('site.update_student')
+@lang('site.edit_student')
 @endsection
 @section('content')
 

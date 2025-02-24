@@ -1,12 +1,12 @@
 @extends('admin.master')
 @section('title')
-    @lang('site.create_Student')
+    @lang('site.create_student')
 @endsection
 
 @section('content')
 
 <div class="container-xxl flex-grow-1 container-p-y">
-    <h4 class="py-3 mb-4 text-muted fw-light">@lang('site.create_circle')</h4>
+    <h4 class="py-3 mb-4 text-muted fw-light">@lang('site.create_student')</h4>
 
     <form action="{{ route('students.store') }}" method="post">
         @csrf

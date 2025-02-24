@@ -23,7 +23,7 @@ class CircleController extends Controller
 
     public function index()
     {
-        $circles = Circle::with('teacher')->filter(request('search'))->paginate(10);
+        $circles = Circle::with('teacher')->filter(request('search'),request('teacher_id'))->paginate(10);
         return view('admin.circle.index', compact('circles'));
     }
 

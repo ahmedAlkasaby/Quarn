@@ -21,8 +21,17 @@ class Circle extends MainModel
         return $this->belongsTo(User::class,'teacher_id','id');
     }
 
-    public function scopeFilter($query, $search)
+    public function scopeFilter($query, $search=null,$teacher_id = null)
     {
-        return $query->where('name', 'like', '%' . $search . '%');
+        $query->when($search, function ($q, $search) {
+
+            $q->where('name', 'like', '%' . $search . '%');
+
+        });
+        $query->when($teacher_id, function ($q, $teacher_id) {
+            $q->where('teacher_id', $teacher_id);
+        });
+
     }
+
 }

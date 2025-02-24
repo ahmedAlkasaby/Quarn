@@ -1,6 +1,6 @@
 @extends('admin.master')
 @section('title')
-    @lang('site.create_circle')
+    @lang('site.update_circle')
 @endsection
 
 @section('content')
