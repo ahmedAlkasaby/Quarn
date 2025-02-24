@@ -73,7 +73,6 @@
               <div>{{ __('site.circles') }}</div>
           </a>
       </li>
-      
       @endif
     </ul>
   </aside>
