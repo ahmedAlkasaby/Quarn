@@ -13,8 +13,10 @@ class TeacherController extends Controller
     {
         $this->middleware('permission:teachers-read')->only('index');
         $this->middleware('permission:teachers-read')->only('show');
+        $this->middleware('permission:teachers-create')->only('create');
         $this->middleware('permission:teachers-create')->only('store');
         $this->middleware('permission:teachers-update')->only('update');
+        $this->middleware('permission:teachers-update')->only('edit');
         $this->middleware('permission:teachers-delete')->only('destroy');
     }
 
@@ -38,7 +40,7 @@ class TeacherController extends Controller
         User::create([
             'name'=>$request->name,
             'email'=>$request->email,
-            'password'=>bcrypt($request->password),
+            'password'=>bcrypt($request->password) ,
         ]);
 
         session()->flash('success', __('site.CreateSucessfully'));
@@ -46,7 +48,7 @@ class TeacherController extends Controller
     }
 
 
-   
+
 
 
     public function edit(string $id)
@@ -57,14 +59,19 @@ class TeacherController extends Controller
     }
 
 
-    public function update(TeacherRequest $request, string $id)
+    public function update(TeacherRequest $request, User $user)
     {
 
-        User::where('id',$id)->update([
-            'name'=>$request->name,
-            'email'=>$request->email,
-            'password'=>bcrypt($request->password),
-        ]);
+        $data = [
+            'name'  => $request->name,
+            'email' => $request->email,
+        ];
+
+        if ($request->filled('password')) {
+            $data['password'] = bcrypt($request->password);
+        }
+
+        $user->update($data);
 
         session()->flash('success', __('site.UpdateSucessfully'));
         return redirect()->route('teachers.index');
@@ -74,8 +81,15 @@ class TeacherController extends Controller
     public function destroy(string $id)
     {
         $teacher=User::find($id);
-        $teacher->delete();
-        session()->flash('success', __('site.DeleteSuccessfully'));
-        return back();
+        if($teacher->circles()->count() == 0){
+
+            $teacher->delete();
+
+            session()->flash('success', __('site.DeleteSuccessfully'));
+            return back();
+        }else{
+            session()->flash('error', __('site.can_not_delete_teacher'));
+            return back();
+        }
     }
 }

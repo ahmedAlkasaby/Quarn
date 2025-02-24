@@ -58,6 +58,14 @@
           </a>
       </li>
       @endif
+      @if (auth()->user()->hasPermission('admins-read'))
+      <li class="menu-item {{ Route::is('admins.*') ? 'active' : '' }}">
+          <a href="{{ route('admins.index') }}" class="menu-link">
+              <i class="fa-solid fa-pen-to-square ms-1 me-3"></i>
+              <div>{{ __('site.admins') }}</div>
+          </a>
+      </li>
+      @endif
       @if (auth()->user()->hasPermission('teachers-read'))
       <li class="menu-item {{ Route::is('teachers.*') ? 'active' : '' }}">
           <a href="{{ route('teachers.index') }}" class="menu-link">

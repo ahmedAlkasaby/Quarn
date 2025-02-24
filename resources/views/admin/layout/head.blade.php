@@ -33,6 +33,9 @@
 
     <!-- Page CSS -->
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+
     @yield('css')
 
     <!-- Helpers -->
@@ -42,4 +45,6 @@
     {{-- <script src={{ url("admin/assets/vendor/js/template-customizer.js")}}></script> --}}
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src={{ url("admin/assets/js/config.js")}}></script>
+
+
 </head>

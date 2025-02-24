@@ -18,13 +18,11 @@ class Admin extends Authenticatable implements LaratrustUser
     protected $guard = 'admin';
 
 
-   
+
     protected $fillable = [
         'name',
         'email',
         'password',
-        'created_by',
-        'updated_by',
         'active',
         'lang',
     ];
@@ -40,4 +38,12 @@ class Admin extends Authenticatable implements LaratrustUser
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function scopeFilter($query, $search = null)
+    {
+        $query->when($search, function ($q, $search) {
+            $q->where('name', 'like', '%' . $search . '%')->
+            orWhere('email', 'like', '%' . $search . '%');
+        });
+    }
 }

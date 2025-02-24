@@ -75,16 +75,12 @@
             </a>
           </li>
           <li>
-            <a class="dropdown-item" href="#">
-              <span class="d-flex align-items-center align-middle">
-                <i class="flex-shrink-0 ti ti-credit-card me-2 ti-sm"></i>
-                <span class="flex-grow-1 align-middle">Billing</span>
-                <span class="flex-shrink-0 badge badge-center rounded-pill bg-label-danger w-px-20 h-px-20"
-                  >2</span
-                >
-              </span>
+            <a class="dropdown-item" href="{{ route('admins.change-lang') }}">
+              <i class="ti ti-settings me-2 ti-sm"></i>
+              <span class="align-middle">{{ auth()->user()->lang == 'ar' ? 'en' : 'ar' }}</span>
             </a>
           </li>
+
           <li>
             <div class="dropdown-divider"></div>
           </li>

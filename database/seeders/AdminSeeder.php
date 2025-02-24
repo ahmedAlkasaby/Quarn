@@ -21,5 +21,16 @@ class AdminSeeder extends Seeder
         ]);
 
         $admin->addRole('admin');
+
+
+        for ($i = 0; $i < 10; $i++) {
+            $admin=Admin::create([
+                'name' => fake()->name(),
+                'email' => fake()->unique()->safeEmail(),
+                'password' => bcrypt('ahmed145'),
+                'active' => rand(0, 1),
+            ]);
+            $admin->addRole('manger');
+        }
     }
 }

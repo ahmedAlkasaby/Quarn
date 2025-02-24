@@ -11,6 +11,16 @@ use Illuminate\Http\Request;
 class CircleController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('permission:circles-read')->only('index');
+        $this->middleware('permission:circles-create')->only('create');
+        $this->middleware('permission:circles-create')->only('store');
+        $this->middleware('permission:circles-update')->only('update');
+        $this->middleware('permission:circles-update')->only('edit');
+        $this->middleware('permission:circles-delete')->only('destroy');
+    }
+
     public function index()
     {
         $circles = Circle::with('teacher')->filter(request('search'))->paginate(10);
