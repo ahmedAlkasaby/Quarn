@@ -45,7 +45,7 @@
                 <tr>
                     <th>ID</th>
                     <th>@lang('site.student')</th>
-                    <th class="text-nowrap text-sm-center">@lang('site.circles')</th>
+                    <th>@lang('site.circles')</th>
 
                     <th class="text-lg-center">@lang('site.action')</th>
                 </tr>
