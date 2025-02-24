@@ -82,6 +82,14 @@
           </a>
       </li>
       @endif
+      @if (auth()->user()->hasPermission('students-read'))
+      <li class="menu-item {{ Route::is('students.*') ? 'active' : '' }}">
+          <a href="{{ route('students.index') }}" class="menu-link">
+              <i class="fa-solid fa-pen-to-square ms-1 me-3"></i>
+              <div>{{ __('site.students') }}</div>
+          </a>
+      </li>
+      @endif
     </ul>
   </aside>
   <!-- / Menu -->
